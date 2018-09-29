@@ -1,0 +1,38 @@
+
+{% set active = "new" %}
+{% extends "../template.njk" %}
+{% import "../macro.njk" as fragment %}
+{% block body %}
+
+
+<div class="container con-in">
+
+        {% for slider in sliderList.data.list %}
+        <!-- 焦点图 -->
+        <div class="slides-toppic2">
+            <img src="/public/images/h-b-2.jpg" alt="">
+        </div>
+        <!-- /焦点图 -->
+        {% endfor %}
+
+
+    <div class="maincon">
+
+        <!-- 新闻 -->
+        <div class="margin-bottom-20">
+            <h1 class="tit">
+                <p>
+                    <ss><i class="fa fa-clipboard"></i></ss>
+                    {{page.data.data.name}}
+                </p>
+            </h1>
+        </div>
+
+        <div class="zw">
+            {{page.data.data.content | safe}}
+        </div>
+        <!-- /新闻 -->
+
+    </div>
+</div>
+{% endblock %}

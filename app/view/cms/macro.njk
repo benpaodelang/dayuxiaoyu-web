@@ -1,0 +1,162 @@
+{% macro left(active='index') %}
+<!-- left -->
+<!-- minimenu -->
+<div class="leftmenu-t display">
+	<div class="logo">
+	  <a href="javascript:void(0)" class="st-open">
+		<img src="/public/images/logo.svg" alt=""/>
+		<span>menu<i class="fa fa-angle-double-right"></span></i>
+	  </a>
+  </div>
+</div>
+<!-- menu -->
+
+<div class="leftmenu st-menu content_7">
+  <div class="minipa">
+  <div class="logo">
+	  <a href="javascript:void(0)" >
+		<img src="/public/images/logo.svg" alt=""/>
+	  </a>
+  </div>
+
+  <ul>
+  	  <li>
+  	   <a href="/" {% if active=='index' %}class="active"{% endif %}><h2>首页<span>home</span></h2><i class="icon iconfont icon-icon"></i></a>
+  	  </li>
+  	  <li>
+  	   <a href="/immigration" {% if active=='immigration' %}class="active"{% endif %}><h2>移民项目<span>Immigration project</span></h2><i class="icon iconfont icon-diqiu"></i></a>
+  	  </li>
+  	  <li>
+  	   <a href="/house" {% if active=='house' %}class="active"{% endif %}><h2>海外房产<span>Overseas property</span></h2><i class="icon iconfont icon-icon-test"></i></a>
+  	  </li>
+  	  <li>
+  	   <a href="/shengzi" {% if active=='shengzi' %}class="active"{% endif %}><h2>海外生子<span>Overseas children</span></h2><i class="icon iconfont icon-children"></i></a>
+  	  </li>
+  	  <li>
+  	   <a href="/new" {% if active=='new' %}class="active"{% endif %}><h2>新闻资讯<span>News and information</span></h2><i class="icon iconfont icon-xinwenzixun"></i></a>
+  	  </li>
+    </ul>
+
+  <ol id="float">
+	  <li>
+	   <a class="active"><i class="icon iconfont icon-icon-test5"></i><h2><strong>400-6383-628</strong><span>客户服务热线电话</span></h2></a>
+	  </li>
+	  <li>
+	   <a href="/advisory"><i class="icon iconfont icon-icon-test6"></i><h2>移民评估<span>Assessment</span></h2></a>
+	  </li>
+	  <li>
+	   <a href="/page?id=11"><i class="icon iconfont icon-icon-test7"></i><h2>商务合作<span>Business cooperation</span></h2></a>
+	  </li>
+	  <li>
+		  <p><img src="/public/images/erwei1.jpg"  alt=""/><span>欧洲时代</span></p>
+		  <p><img src="/public/images/erwei2.jpg" alt=""/><span>掘金东南亚</span></p>
+	  </li>
+  </ol>
+  </div>
+</div>
+<!-- /left -->
+{% endmacro %}
+
+
+{% macro slider(sliderList) %}
+<!-- 焦点图 -->
+<div class="slides">
+
+        {% for slider in sliderList.data.list %}
+         <div style="background-image:url({{slider.image}})">
+                    <h1><p></p></h1><a href="{{slider.url}}" target="_blank"></a>
+         </div>
+        {% endfor %}
+</div>
+<!-- /焦点图 -->
+{% endmacro %}
+
+
+{% macro top() %}
+<!-- top -->
+<div class="top">
+	      <div class="container">
+		      <div class="left-t pull-left">互联网海外服务平台</div>
+			  <div class="pull-right">
+			      <span><ss>欢迎来到大鱼小鱼国际</ss></span>
+				  <span><a href=""><i class="fa fa-comments"></i> 微信小程序</a></span>
+				  <span><a href="/public/login-coo.html" target="_blank" data-toggle="tooltip" data-placement="bottom" title="合作商入口"><i class="fa fa-briefcase"></i> 合作商</a></span>
+				  <span><a href="http://crm.dayuxiaoyu.com/" target="_blank" data-toggle="tooltip" data-placement="bottom" title="CRM系统"><i class="fa fa-bar-chart"></i></a></span>
+				  <span><a href="https://exmail.qq.com/cgi-bin/loginpage" target="_blank" data-toggle="tooltip" data-placement="bottom" title="邮箱"><i class="fa fa-envelope"></i></a></span>
+			  </div>
+		  </div>
+	  </div>
+<!-- /top -->
+{% endmacro %}
+
+{% macro footer() %}
+<!-- end -->
+<div class="container">
+	<footer>
+		<ul>
+			<span>友情链接：</span>
+			<a href="http://www.xingvisa.com/" target="_blank">鑫海移民</a>
+			<a href="http://www.efirstlanding.com/" target="_blank">First Landing</a>
+			<a href="http://www.lantaiyimin.com/" target="_blank">北京兰台移民</a>
+			<a href="http://www.51xly.com/" target="_blank">七色光游学</a>
+			<p class="logo2"><img src="/public/images/logo2.svg" alt=""/></p>
+		</ul>
+		<ol>
+			<p>
+				<a href="/page?id=8" >关于大鱼小鱼国际</a>
+				<a href="/page?id=9" >联系我们</a>
+				<a href="/page?id=10" >招贤纳士</a>
+				<a href="/page?id=11" >商务合作</a>
+			</p>
+			<span>北京总部：北京市朝阳区霄云路国航世纪大厦1404  &nbsp;&nbsp;&nbsp;&nbsp;  电话：010-64177031 （客户服务）&nbsp;&nbsp;&nbsp;&nbsp;   客服邮箱：serve@dayuxiaoyu.com</span>
+			<span>2016 © 大鱼小鱼国际™ dayuxiaoyu.com All rights reserved. &nbsp;&nbsp;&nbsp;&nbsp; 京ICP备17022014号</span>
+		</ol>
+	</footer>
+</div>
+<div class="to-top">
+	<a><i class="fa fa-angle-up"></i></a>
+</div>
+<!-- /end -->
+{% endmacro %}
+
+{% macro advisory(countryList,csrf) %}
+<!-- 表单 -->
+        <div class="biaodan">
+            <div class="row">
+                <div class="col-sm-3">
+                <select id="advisoryCountry" class="form-control">
+                {% for country in countryList %}
+                <option value="{{country.id}}">{{country.name}}</option>
+                {% endfor %}
+                </select>
+                </div>
+                <div class="col-sm-3"><input type="text" id="advisoryName" class="form-control" id="" placeholder="姓名"></div>
+                <div class="col-sm-3"><input type="text" id="advisoryPhone" class="form-control" id="" placeholder="手机号"></div>
+                <div class="col-sm-3">
+                    <button id="advisorySubmit" class="button button-highlight btn-block" data-toggle="modal"
+                            data-target="#modal1">预约办理
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- /表单 -->
+
+        <script>
+                $(document).ready(function(){
+                        $("#advisorySubmit").click(function(){
+                            var request = {};
+                            request.advisoryCountry = $("#advisoryCountry").val();
+                            request.advisoryName = $("#advisoryName").val();
+                            request.advisoryPhone = $("#advisoryPhone").val();
+                            $.post("/submit?_csrf={{ csrf | safe }}", request,
+                                      function(data){
+                                      $("#advisoryName").val("");
+                                      $("#advisoryPhone").val("");
+                                      alert("提交成功,请等待客服回访")
+                                      });
+
+                        })
+                    })
+                </script>
+
+{% endmacro %}

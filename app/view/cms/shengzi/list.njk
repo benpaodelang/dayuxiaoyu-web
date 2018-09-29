@@ -1,0 +1,71 @@
+{% set active = "shengzi" %}
+{% extends "../template.njk" %}
+{% import "../macro.njk" as fragment %}
+{% block body %}
+
+<div class="container con-in">
+    <!-- 焦点图 -->
+    <div class="slides slinde-h2">
+
+        {% for slider in sliderList.data.list %}
+        <div style="background-image:url({{slider.image}})">
+            <h1><p></p></h1><a href="{{slider.url}}" target="_blank"></a>
+        </div>
+        {% endfor %}
+    </div>
+    <!-- /焦点图 -->
+
+    <div class="maincon">
+
+        <!-- 房产 -->
+        <div class="margin-bottom-20">
+            <h1 class="tit">
+                <p>
+                    <ss><i class="icon iconfont icon-children"></i></ss>
+                    海外生子项目
+                </p>
+            </h1>
+
+            <div class="sub-tit">
+                <p>海外生子，您的孩子出生立刻拥有公民身份,享有公民权利，年满19岁，父母可以申请依亲，拥有永久绿卡,无需等待配额。</p>
+                <hr>
+            </div>
+            <ul class="product-con look">
+                <li class="product-item">
+                    <figcaption>
+                        <a href="/new/detail?id=13" class="info" target="_blank">
+                            <h3>
+                                <p>
+                                    <ss>Canada</ss>
+                                    赴加生子项目<span>高福利，低价格</span></p>
+                            </h3>
+                            <em><img src="/public/images/534767.jpg" alt=""><img src="/public/images/kb.jpg" alt=""
+                                                                               class="kb"></em>
+                        </a>
+                    </figcaption>
+                </li>
+                <li class="product-item">
+                    <figcaption>
+                        <a href="/new/detail?id=27" class="info" target="_blank">
+                            <h3>
+                                <p>
+                                    <ss>U.S.A</ss>
+                                    赴美生子项目<span>多种套餐选择，满足不同需求</span></p>
+                            </h3>
+                            <em><img src="/public/images/500463705.jpg" alt=""><img src="/public/images/kb.jpg" alt=""
+                                                                               class="kb"></em>
+                        </a>
+                    </figcaption>
+                </li>
+
+            </ul>
+
+        </div>
+
+        <!-- /房产 -->
+
+    </div>
+</div>
+
+
+{% endblock %}

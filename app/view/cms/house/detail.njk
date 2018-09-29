@@ -1,0 +1,95 @@
+{% set active = "house" %}
+{% extends "../template.njk" %}
+{% import "../macro.njk" as fragment %}
+{% block body %}
+
+
+
+ <!-- /top -->
+    <div class="container con-in">
+
+        <!-- 焦点图 -->
+        <div class="slides slinde-h2">
+            {% for video in houseModel.data.data.videoList %}
+            <div style="background-image:url({{video.image}})">
+                <a href="javascript:;" src="{{video.path}}" class="video-src"></a>
+            </div>
+            {% endfor %}
+            {% for picture in houseModel.data.data.pictureList %}
+            <div style="background-image:url({{picture}})"></div>
+            {% endfor %}
+        </div>
+        <!-- /焦点图 -->
+
+
+        <div class="maincon">
+
+            <!-- 房产 -->
+            <div class="">
+                <h1 class="tit">
+                    <p>
+                        <ss><i class="fa fa-home"></i></ss>
+                        基本信息
+                    </p>
+                </h1>
+
+                <div class="fangchan margin-bottom-40">
+                    <div>
+                        <h1>{{houseModel.data.data.title}}
+                            <strong> {{houseModel.data.data.price}}万{{houseModel.data.data.priceUnit}}</strong>
+                        </h1>
+                        <p>{{houseModel.data.data.description}}</p>
+                    </div>
+                    <dl>
+                        <dt>国家：</dt>
+                        <dd>{{houseModel.data.data.countryName}}</dd>
+                        <dt>年收益：</dt>
+                        <dd>{{houseModel.data.data.income}}%</dd>
+                        <dt>户型：</dt>
+                        <dd>{{houseModel.data.data.huxing}}</dd>
+                        <hr>
+                        <dt>位置：</dt>
+                        <dd>{{houseModel.data.data.region}}</dd>
+                        <dt>面积：</dt>
+                        <dd>约{{houseModel.data.data.area}}平米</dd>
+                        <dt>是否有电梯：</dt>
+                        <dd>{% if houseModel.data.data.elevator==0 %}
+                                                      无
+                                                    {% else %}
+                                                      有
+                                                    {% endif %}</dd>
+                        <hr>
+                        <dt>物业：</dt>
+                        <dd>{{houseModel.data.data.houseType}}</dd>
+                        <dt>楼层：</dt>
+                        <dd>{{houseModel.data.data.floor}}层</dd>
+                        <hr>
+                    </dl>
+                </div>
+
+
+                <h1 class="tit">
+                    <p>
+                        <ss><i class="fa fa-folder-open-o"></i></ss>
+                        房产介绍
+                    </p>
+                </h1>
+                <div class="zw">
+
+                   {{houseModel.data.data.content | safe}}
+
+                </div>
+
+
+            </div>
+
+            {{ fragment.advisory(countryList.data.list,ctx.csrf)}}
+
+
+            <!-- /房产 -->
+
+        </div>
+    </div>
+
+
+{% endblock %}

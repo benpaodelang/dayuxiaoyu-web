@@ -1,0 +1,212 @@
+{% set active = "house" %}
+{% extends "../template.njk" %}
+{% import "../macro.njk" as fragment %}
+{% block body %}
+
+
+<div class="container con-in">
+
+    <!-- 焦点图 -->
+    <div class="slides slinde-h2">
+
+        {% for slider in sliderList.data.list %}
+        <div style="background-image:url({{slider.image}})">
+            <h1><p></p></h1><a href="{{slider.url}}" target="_blank"></a>
+        </div>
+        {% endfor %}
+    </div>
+    <!-- /焦点图 -->
+
+    <div class="maincon" id="selectBar">
+
+        <!-- 房产 -->
+        <div class="margin-bottom-20">
+            <h1 class="tit">
+                <p>
+                    <ss><i class="fa fa-home"></i></ss>
+                    海外房产
+                </p>
+            </h1>
+
+            <div class="shaixuan">
+                <dl>
+                    <dt><span>选择国家：</span></dt>
+                    <dd>
+                        <a  onclick="clearCountry()" {% if not request.country  %}class="active"{% endif %} >全部</a>
+                        {% for country in countryList.data.list %}
+                        <a  onclick="selectCountry({{country.id}})" {% if request.country==country.id  %}class="active"{% endif %}>{{country.name}}</a>
+                        {% endfor %}
+                    </dd>
+                </dl>
+                <hr>
+                <dl>
+                    <dt><span>价格：</span></dt>
+                    <dd>
+                        <a  onclick="clearPrice()"            {% if not request.priceFrom and not request.priceTo  %}class="active"{% endif %}>全部</a>
+                        <a  onclick="selectPrice(0,100)"        {% if request.priceTo==100  %}class="active"{% endif %}>￥100万以下</a>
+                        <a  onclick="selectPrice(100,300)"        {% if request.priceFrom==100 and request.priceTo==300  %}class="active"{% endif %}>￥100万-300万</a>
+                        <a  onclick="selectPrice(300,500)"        {% if request.priceFrom==300 and request.priceTo==500  %}class="active"{% endif %}>￥300万-500万</a>
+                        <a  onclick="selectPrice(500,800)"        {% if request.priceFrom==500 and request.priceTo==800  %}class="active"{% endif %}>￥501万-800万</a>
+                        <a  onclick="selectPrice(800,1000)"       {% if request.priceFrom==800 and request.priceTo==1000  %}class="active"{% endif %}>￥800万-1000万</a>
+                        <a  onclick="selectPrice(1000,100000000)" {% if request.priceFrom==1000 and request.priceTo==100000000  %}class="active"{% endif %}>￥1000万以上</a>
+                    </dd>
+                </dl>
+                <hr>
+                <dl>
+                    <dt><span>购买目的：</span></dt>
+                    <dd>
+                        <a  onclick="clearPurpose()"          {% if not request.purpose %}class="active"{% endif %}>全部</a>
+                        <a  onclick="selectPurpose('房产投资')" {% if request.purpose=='房产投资' %}class="active"{% endif %}>房产投资</a>
+                        <a  onclick="selectPurpose('永居卡')"   {% if request.purpose=='永居卡' %}class="active"{% endif %}>永居卡</a>
+                        <a  onclick="selectPurpose('护照项目')" {% if request.purpose=='护照项目' %}class="active"{% endif %}>护照项目</a>
+                    </dd>
+                </dl>
+                <hr>
+                <dl>
+                    <dt><span>物业类型：</span></dt>
+                    <dd>
+                        <a  onclick="clearHouseType()" {% if not request.houseType %}class="active"{% endif %}>全部</a>
+                        <a  onclick="selectHouseType('公寓')"  {% if request.houseType=='公寓' %}class="active"{% endif %}>公寓</a>
+                        <a  onclick="selectHouseType('别墅')"  {% if request.houseType=='别墅' %}class="active"{% endif %}>别墅</a>
+                        <a  onclick="selectHouseType('商铺')" {% if request.houseType=='商铺' %}class="active"{% endif %}>商铺</a>
+                    </dd>
+                </dl>
+            </div>
+
+            <ul class="product-con2 look look2">
+
+                {% for house in houseList.data.list %}
+                <li class="product-item">
+                    <figcaption>
+                        <a href="/house/detail?id={{house.id}}" class="info" target="_blank">
+                            <em><img src="{{house.picture}}" alt=""><img src="/public/images/kb.jpg" alt="" class="kb"></em>
+                        </a>
+                        <h3>
+                            <p>
+                                <ss>{{house.title}}</ss>
+                                {{house.price}}万{{house.priceUnit}}
+                                <span>{{house.countryName}} | {{house.region}} | 约{{house.area}}平米 | {{house.houseType}}</span>
+                            </p>
+                        </h3>
+                    </figcaption>
+                </li>
+                {% endfor %}
+
+            </ul>
+
+
+
+            <div class="text-center margin-top-30">
+                        <ul class="pagination">
+                            {% if houseList.data.currentPage > 1 %}
+                            <li class="paginate_button previous" aria-controls="example-2" tabindex="0">
+                            <a onclick="selectPage({{ houseList.data.currentPage-1 }})">Previous</a>
+                            </li>
+                            {% endif %}
+
+                            {% for i in range(1, houseList.data.totalPage+1) -%}
+                            <li class="paginate_button {% if i==houseList.data.currentPage %}active{% endif %}" aria-controls="example-2" tabindex="0">
+                            <a onclick="selectPage({{i}})">{{i}}</a>
+                            </li>
+                            {%- endfor %}
+
+                            {% if houseList.data.currentPage <= houseList.data.totalPage %}
+                            {% if houseList.data.currentPage != houseList.data.totalPage %}
+                            <li class="paginate_button next" aria-controls="example-2" tabindex="0">
+                            <a onclick="selectPage({{houseList.data.currentPage+1}})">Next</a>
+                            </li>
+                            {% endif %}
+                            {% endif %}
+                        </ul>
+                    </div>
+
+        </div>
+        <!-- /房产 -->
+
+        <script>
+
+        var request = {
+                    country:'{{request.country}}',
+                    priceFrom:'{{request.priceFrom}}',
+                    priceTo:'{{request.priceTo}}',
+                    houseType:'{{request.houseType}}',
+                    pageNo:'{{request.pageNo}}',
+                    purpose:'{{request.purpose}}'
+        }
+
+        function refreshUrl(){
+            var url = '/house?';
+            if(request.country){
+                url = url + 'country=' + request.country + "&"
+            }
+            if(request.priceFrom){
+                url = url + 'priceFrom=' + request.priceFrom + "&"
+            }
+            if(request.priceTo){
+                url = url + 'priceTo=' + request.priceTo + "&"
+            }
+            if(request.houseType){
+                url = url + 'houseType=' + request.houseType + "&"
+            }
+            if(request.pageNo){
+                url = url + 'pageNo=' + request.pageNo + "&"
+            }
+            if(request.purpose){
+                url = url + 'purpose=' + request.purpose + "&"
+            }
+            url = url + '#selectBar'
+            $(location).attr('href', url);
+        }
+
+        function clearCountry(){
+            delete request.country;
+            refreshUrl();
+        }
+
+        function selectCountry(country){
+            request.country = country;
+            refreshUrl();
+        }
+
+        function clearPrice(){
+            delete request.priceFrom;
+            delete request.priceTo;
+            refreshUrl();
+        }
+
+        function selectPrice(from,to){
+            request.priceFrom = from;
+            request.priceTo = to;
+            refreshUrl();
+        }
+
+        function clearPurpose(){
+            delete request.purpose;
+            refreshUrl();
+        }
+
+        function selectPurpose(purpose){
+            request.purpose = purpose;
+            refreshUrl();
+        }
+
+        function clearHouseType(){
+            delete request.houseType;
+            refreshUrl();
+        }
+
+        function selectHouseType(houseType){
+            request.houseType = houseType;
+            refreshUrl();
+        }
+
+        function selectPage(page){
+            request.pageNo = page;
+            refreshUrl();
+        }
+
+        </script>
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,92 @@
+{% set active = "immigration" %}
+{% extends "../template.njk" %}
+{% import "../macro.njk" as fragment %}
+{% block body %}
+
+
+<div class="container con-in">
+    <!-- 焦点图 -->
+    <div class="slides slinde-h2">
+
+        {% for slider in sliderList.data.list %}
+        <div style="background-image:url({{slider.image}})">
+            <h1><p></p></h1><a href="{{slider.url}}" target="_blank"></a>
+        </div>
+        {% endfor %}
+    </div>
+    <!-- /焦点图 -->
+
+    <div class="maincon">
+
+        <!-- 房产 -->
+        <div class="margin-bottom-20">
+            <h1 class="tit">
+                <p>
+                    <ss><i class="icon iconfont icon-diqiu"></i></ss>
+                    永居卡项目
+                </p>
+            </h1>
+
+            <div class="sub-tit">
+                <p>大鱼小鱼国际对众多的移民项目进行对比分析，我们只为您推荐：投资环境稳定，安全性高，申请周期快，申请条件宽松，高附加值的移民项目。</p>
+                <hr>
+            </div>
+            <ul class="product-con look">
+                {% for immigration in immigrationList.data.list %}
+                <li class="product-item">
+                    <figcaption>
+                        <a href="/immigration/detail?id={{immigration.id}}" class="info" target="_blank">
+                            <h3>
+                                <p>
+                                    <ss>{{immigration.country}}</ss>
+                                    {{immigration.title}}<span>{{immigration.subTitle}}</span></p>
+                            </h3>
+                            <em><img src="{{immigration.picture}}" alt="">
+                                <img src="/public/images/kb.jpg" alt="" class="kb">
+                            </em>
+                        </a>
+                    </figcaption>
+                </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+
+        <div class="margin-bottom-20">
+            <h1 class="tit">
+                <p>
+                    <ss><i class="fa fa-flag"></i></ss>
+                    护照项目
+                </p>
+            </h1>
+
+            <div class="sub-tit">
+                <p>大鱼小鱼国际对众多的移民项目进行对比分析，我们只为您推荐：投资环境稳定，安全性高，申请周期快，申请条件宽松，高附加值的移民项目。</p>
+                <hr>
+            </div>
+            <ul class="product-con look">
+                {% for passport in passportList.data.list %}
+                <li class="product-item">
+                    <figcaption>
+                        <a href="/passport/detail?id={{passport.id}}" class="info" target="_blank">
+                            <h3>
+                                <p>
+                                    <ss>{{passport.country}}</ss>
+                                    {{passport.title}}<span>{{passport.subTitle}}</span></p>
+                            </h3>
+                            <em><img src="{{passport.picture}}" alt="">
+                                <img src="/public/images/kb.jpg" alt="" class="kb">
+                            </em>
+                        </a>
+                    </figcaption>
+                </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+        <!-- /房产 -->
+
+    </div>
+</div>
+
+{% endblock %}

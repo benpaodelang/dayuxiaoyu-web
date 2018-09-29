@@ -1,0 +1,154 @@
+{% set active = "immigration" %}
+{% extends "../template.njk" %}
+{% import "../macro.njk" as fragment %}
+{% block body %}
+
+
+
+<div class="container con-in">
+    <!-- 焦点图 -->
+    <div class="slides-toppic">
+        <h3>
+            <p>
+                <ss>{{immigrationModel.data.data.country}}</ss>
+                {{immigrationModel.data.data.title}}<span>{{immigrationModel.data.data.subTitle}}</span></p>
+        </h3>
+        <img src="{{immigrationModel.data.data.picture}}" alt="">
+    </div>
+    <!-- /焦点图 -->
+
+    <div class="maincon">
+
+        <!-- 移民 -->
+        <div class="">
+            <h1 class="tit">
+                <p>
+                    <ss><i class="fa fa-globe"></i></ss>
+                    项目简介
+                </p>
+            </h1>
+            <div class="yimin margin-bottom-40">
+                <div>
+
+                    <p>{{immigrationModel.data.data.description}}</p>
+                </div>
+                <hr>
+                <dl>
+                    <dt><i class="fa fa-money"></i>投资额度：</dt>
+                    <dd>{{immigrationModel.data.data.price}}</dd>
+                    <dt><i class="fa fa-clock-o"></i>办理周期：</dt>
+                    <dd>{{immigrationModel.data.data.period}}</dd>
+                    <dt><i class="fa fa-book"></i>身份类型：</dt>
+                    <dd>{{immigrationModel.data.data.identityType}}</dd>
+                    <dt><i class="fa fa-home"></i>居住要求：</dt>
+                    <dd>{{immigrationModel.data.data.livingRequirement}}</dd>
+                    <dt><i class="fa fa-calendar-o"></i>无犯罪记录：</dt>
+                    <dd>{{immigrationModel.data.data.criminalRecord}}</dd>
+                </dl>
+                <hr>
+            </div>
+        </div>
+
+        <!-- 视频-->
+        {% if immigrationModel.data.data.videoList.length>0 %}
+        <h1 class="tit">
+            <p>
+                <ss><i class="fa fa-film"></i></ss>
+                秒懂移民<small> — 几分钟看懂移民项目</small>
+            </p>
+        </h1>
+        <div class="row margin-top-20 margin-bottom-20">
+            <ul class=" look">
+            {% for video in immigrationModel.data.data.videoList %}
+            <li class="col-sm-3">
+                <div class="sp">
+                    <a href="javascript:;" src="{{video.path}}" class="video-src">
+                        <em><img src="{{video.image}}" alt=""><img src="/public/images/kb.jpg" alt="" class="kb"></em>
+                    </a>
+                    <p>{{video.name}}</p>
+                </div>
+            </li>
+            {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        <!-- /视频-->
+
+        <!-- 房源-->
+        {% if immigrationModel.data.data.recommendHouse.length>0 %}
+        <h1 class="tit">
+            <p>
+                <ss><i class="fa fa-home"></i></ss>
+                推荐房产
+            </p>
+            <span><a href="/house" target="_blank">more&gt;&gt;</a></span></h1>
+        <ul class="product-con2 look look2">
+
+            {% for house in immigrationModel.data.data.recommendHouse %}
+            <li class="product-item">
+                <figcaption>
+                    <a href="/house/detail?id={{house.id}}" class="info" target="_blank">
+                        <em><img src="{{house.picture}}" alt=""><img src="/public/images/kb.jpg" alt="" class="kb"></em>
+                    </a>
+                    <h3>
+                        <p>
+                            <ss>{{house.title}}</ss>
+                            {{house.price}}万{{house.priceUnit}}
+                            <span>{{house.countryName}} | {{house.region}} | 约{{house.area}}平米 | {{house.houseType}}</span></p>
+                    </h3>
+                </figcaption>
+            </li>
+            {% endfor %}
+
+        </ul>
+        {% endif %}
+        <!-- /房源-->
+
+        <!-- table -->
+        <div class="margin-top-40">
+            <ul class="nav-tabs" role="tablist">
+                <li class="active"><a href="#tab1" role="tab" data-toggle="tab">项目优势</a></li>
+                <li><a href="#tab2" role="tab" data-toggle="tab">申请条件</a></li>
+                <li><a href="#tab3" role="tab" data-toggle="tab">申请流程</a></li>
+                <li><a href="#tab4" role="tab" data-toggle="tab">申请费用</a></li>
+                <li><a href="#tab5" role="tab" data-toggle="tab">国家简介</a></li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="tab1">
+                    <div class="zw">
+                        {{immigrationModel.data.data.projectBenefits | safe}}
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="tab2">
+                    <div class="zw">
+                        {{immigrationModel.data.data.applicationCondition | safe}}
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="tab3">
+                    <div class="zw">
+                        {{immigrationModel.data.data.applicationProcess | safe}}
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="tab4">
+                    <div class="zw">
+                        {{immigrationModel.data.data.priceDetail | safe}}
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="tab5">
+                    <div class="zw">
+                        {{immigrationModel.data.data.countryInstroduction | safe}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /table-->
+
+
+        {{ fragment.advisory(countryList.data.list,ctx.csrf)}}
+
+    </div>
+    <!-- /移民 -->
+
+</div>
+
+{% endblock %}

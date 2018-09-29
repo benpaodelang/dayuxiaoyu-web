@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <title>大鱼小鱼国际-互联网海外服务平台</title>
+    <meta name="description" content="大鱼小鱼国际-互联网海外服务平台，用互联网技术优化传统移民服务模式，提供移民一站式服务，让您了解最全面的移民解决方案，一步到位获得海外身份。">
+	<meta name="keywords" content="美国移民,移民美国,澳洲移民,加拿大移民,新西兰移民,赴美生子,赴加生子,移民葡萄牙,移民西班牙,移民意大利,移民塞浦路斯,移民希腊,圣基茨移民,护照,工作签证,马耳他移民">
+      <link rel="shortcut icon" href="/public/images/favicon.ico"/>
+      <link rel="bookmark" href="/public/images/favicon.ico"/>
+
+	<!-- css -->
+    <link rel="stylesheet" href="/public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/public/css/font-awesome/font-awesome.min.css">
+    <link rel="stylesheet" href="/public/css/styles.css">
+    <script src="/public/js/jquery.min.js"></script>
+  </head>
+<body>
+
+<script type="text/javascript">
+    function urlRedirect() {
+        var sUserAgent = navigator.userAgent.toLowerCase();
+        if ((sUserAgent.match(/(ipod|iphone os|midp|ucweb|android|windows ce|windows mobile)/i))) {
+            window.location="http://m.dayuxiaoyu.com/"
+        }
+    }
+    urlRedirect();
+ </script>
+
+<div id="st-container">
+{{ fragment.left(active)}}
+
+<!-- con -->
+<div class="st-content-bg"></div>
+<div class="st-content">
+
+{{ fragment.top()}}
+{% block body %}{% endblock %}
+
+{{ fragment.footer()}}
+
+
+</div>
+<!-- /con -->
+</div>
+		<!-- 视频弹出层 -->
+<div class="popup-box" style="display: none;">
+	<div class="alert-video">
+		<a href="javascript:void(0)" class="close-btn"></a>
+	</div>
+</div>
+	<!-- /视频弹出层 -->
+
+
+<!-- jQuery -->
+
+<script src="/public/js/bootstrap.min.js"></script>
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="/public/js/html5shiv.js"></script>
+    <script src="/public/js/respond.min.js"></script>
+  <![endif]--><!-- 浏览器支持h5标签 -->
+<script type="text/javascript" src="/public/js/buttons.js"></script><!-- 按钮下拉菜单 -->
+<script type="text/javascript" src="/public/js/retina.js"></script><!-- retina屏 -->
+<script type="text/javascript" src="/public/js/jquery.slides.js"></script><!-- 幻灯片 -->
+<script src="/public/js/jquery.toTop.js"></script><!-- to top -->
+<script src="/public/js/classie.js"></script><!-- ipad菜单 -->
+<!-- 自定义滚动条 -->
+<link href="/public/js/mCustomScrollbar/jquery.mCustomScrollbar.css" rel="stylesheet">
+<script src="/public/js/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+<!-- 自定义 -->
+<script src="/public/js/custom.js"></script>
+</body>
+</html>

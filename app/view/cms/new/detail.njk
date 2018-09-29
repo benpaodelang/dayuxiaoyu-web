@@ -1,0 +1,35 @@
+{% set active = "new" %}
+{% extends "../template.njk" %}
+{% import "../macro.njk" as fragment %}
+{% block body %}
+
+<div class="container con-in">
+
+    <div class="maincon">
+
+        <!-- 新闻 -->
+        <div class="zw-tit">
+            <h2></h2>
+            <h1>{{newModel.data.data.title}}</h1>
+            <hr>
+            <p>
+                <ss><i class="fa fa-clock-o"></i></ss>
+                <span>{{helper.timeFormat(new.createTime,'YYYY.MM.DD')}}</span>
+                <ss><i class="fa fa-user"></i></ss>
+                <span>编辑：凯哥</span>
+                <ss><i class="fa fa-eye"></i></ss>
+                <span>阅读：156</span>
+            </p>
+        </div>
+
+        <div class="zw">
+
+            {{ newModel.data.data.content | safe }}
+
+
+        </div>
+        <!-- /新闻 -->
+
+    </div>
+</div>
+{% endblock %}
